@@ -33,6 +33,6 @@ class BookmarksController < ApplicationController
 
   def set_list
     # @list = List.find(params[:id])
-    @list = List.find(params[:list_id]) #neste caso é o list_id
+    @list = List.find(params[:list_id]) # neste caso é o list_id
   end
 end

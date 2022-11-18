@@ -1,17 +1,27 @@
 <h2><%= @list.name %> details</h2>
 
-<ul>
+<div class="row my-2">
   <% @list.bookmarks.each do |bookmark| %>
-    <br>
-    <li><strong>Title:</strong><%= bookmark.movie.title %></li>
-    <li><strong>Overview:</strong><%= bookmark.movie.overview %></li>
-    <li><strong>Poster:</strong><%= bookmark.movie.poster_url %></li>
-    <li><strong>Rating:</strong><%= bookmark.movie.rating %></li>
-    <li><strong>Comment:</strong><%= bookmark.comment %></li>
-    <%= link_to "Delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-    <br>
+    <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in"> <%# flex de cada card %>
+      <div class="bg-white rounded shadow h-100"> <%# "card de cada movie" %>
+        <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title, class: "movie-img rounded-top" %> <%# imagem de cada movie %>
+        <div class="p-3 rounded-bottom d-flex flex-column">
+          <%# movie title: %>
+          <strong><%= bookmark.movie.title %> <span class="text-muted font-weight-normal"> <%= bookmark.movie.rating %> <i class="fas fa-star star-yellow"></i></span></strong>
+          <%# movie overview: %>
+          <small class="text-muted"> <%= bookmark.movie.overview %></small>
+          <%# quotes: %>
+          <div>
+            <i class="fas fa-quote-left me-2"></i><small class="flex-grow-1"><%= bookmark.comment %></small>
+          </div>
+          <%# delete: %>
+          <small class="text-right flex-shrink-0"><%= link_to "delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{bookmark.movie.title} from your #{@list.name} list?"}, class: 'text-danger' %></small>
+        </div>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
+
 
 <%= link_to "Back to lists", lists_path %>
 <%= link_to "Add Bookmark", new_list_bookmark_path(@list) %>

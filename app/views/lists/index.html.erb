@@ -1,8 +1,11 @@
-<h1>List Index</h1>
-<ul>
-  <% @lists.each do |list| %>
-    <li><%= link_to list.name, list_path(list.id)  %></li>
-  <% end %>
-</ul>
+  <h1>My lists</h1>
 
-<%= link_to "New List", new_list_path %>
+  <% @lists.each do |list| %>
+  <div class="col-12 col-sm-6 col-md-4 mb-3">
+    <%= link_to list_path(list), class: "text-decoration-none" do %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80)">
+        <%= list.name %>
+      </div>
+    <% end %>
+  </div>
+  <% end %>

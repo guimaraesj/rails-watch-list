@@ -7,10 +7,10 @@ module ListsHelper
       'https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'
     end
   end
-
+heroku
   def image_cloudinary_tag(list)
     if list.photo.attached?
-      cl_image_tag list.photo.key
+      cl_image_path list.photo.key
     else
       image_tag 'https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'
     end
